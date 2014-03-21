@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="server_address" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">54.214.236.28</Value>
+    </Setting>
+    <Setting Name="initial_catalog" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FOAMS</Value>
+    </Setting>
+    <Setting Name="inboundLegList" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SELECT * FROM dbo.viewAPIS_InboundLegData ORDER BY [Leg_EstDepDateTimeLocal]</Value>
+    </Setting>
+    <Setting Name="outboundLegList" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SELECT * FROM dbo.viewAPIS_OutboundLegData ORDER BY [Leg_EstDepDateTimeLocal]</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

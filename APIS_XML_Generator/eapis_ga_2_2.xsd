@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="2.2">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+           United States Customs and Border Protection,  General Aviation Manifest schema for eAPIS/APIS, version 2_2, RC1
+           Release (2.0) - initial public release
+           Release (2.1) - changed LocalTimeHourMinuteSecondType and LocalTimeHourMinuteType to be a string.  
+           Release (2.2) - Changes:
+                                     1) within crew: BirthCntry, CityofBirth, StateProvinceofBirth elements set to optional
+                                     2) within crew: Permanent Address Element optional.  Is required if TravelerType is PILOT
+  </xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="DomesticLocationType">
+		<xs:annotation>
+			<xs:documentation>Describes a USA Location</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AirportCode">
+				<xs:annotation>
+					<xs:documentation>Approved General Aviation Airport.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="6" />
+						<xs:whiteSpace value="collapse" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="City">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30" />
+						<xs:minLength value="1" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="State">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PlaceDescription">
+				<xs:annotation>
+					<xs:documentation>Description of location in relation to Airport.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="75" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ForeignLocationType">
+		<xs:annotation>
+			<xs:documentation>Describes a non-USA Location</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AirportCode">
+				<xs:annotation>
+					<xs:documentation>Foreign ICAO airport code.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6" />
+						<xs:whiteSpace value="collapse" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="City">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="30" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CountryCode">
+				<xs:annotation>
+					<xs:documentation>ISO 3166-1 alpha-3</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="3" />
+						<xs:whiteSpace value="collapse" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompleteItineraryType">
+		<xs:annotation>
+			<xs:documentation>Describes a complete itinerary</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ForeignAirport1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ForeignAirport2">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ForeignAirport3">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ForeignAirport4">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ForeignAirport5">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10" />
+						<xs:whiteSpace value="preserve" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BorderCrossingType">
+		<xs:annotation>
+			<xs:documentation>Describes a Border Crossing</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="75" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BusinessEntityNameType">
+		<xs:annotation>
+			<xs:documentation>Describes a Business Entity Name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PersonNameType">
+		<xs:annotation>
+			<xs:documentation>Person Name</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LastName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FirstName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MiddleName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactType">
+		<xs:sequence>
+			<xs:element name="StreetAddr">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AddressSupplemental">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="City">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StateProvince">
+				<xs:annotation>
+					<xs:documentation>state or province</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ZipPostal">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="9" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Country">
+				<xs:annotation>
+					<xs:documentation>ISO 3166-1 alpha-3</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="3" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TelephoneNbr">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FaxNbr">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="EmailAddr">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="70" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="StreetAddr">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Street Address</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="City">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">City</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StateProvince">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">State or Province</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PostalCode">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Postal code</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="9" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Country">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Country, ISO 3166-1 alpha-3</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="3" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="USAddressType">
+		<xs:sequence>
+			<xs:element name="StreetAddr">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Street Address</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="City">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">City</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="State">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">State</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PostalCode">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Postal code</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="9" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LocalTimeHourMinuteType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d\d:\d\d" />
+			<xs:pattern value="\d\d:\d\d:\d\d" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocalTimeHourMinuteSecondType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d\d:\d\d:\d\d" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Manifest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Transaction">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FlightType">
+								<xs:annotation>
+									<xs:documentation>Must be GA for General Aviation</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="GA" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="SchemaVersion">
+								<xs:annotation>
+									<xs:documentation>Defined and Published General Aviation supported schema version - 2.2</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="2.2" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="SenderId">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">This is the id furnished at the time of registration and uniquely identifies the person submitting the manifest</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="7" />
+										<xs:maxLength value="8" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="DateAssembled">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Date manifest is submitted.  Date should be local time relative to sender.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:date">
+										<xs:whiteSpace value="collapse" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="TimeAssembled">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Local time the manifest is submitted.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="LocalTimeHourMinuteSecondType">
+										<xs:whiteSpace value="collapse" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="EmergencyContact">
+								<xs:annotation>
+									<xs:documentation>Contains emergency contact information for the flight.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LastName">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+													<xs:maxLength value="25" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FirstName">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+													<xs:minLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MiddleName">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TelephoneNbr">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="25" />
+													<xs:minLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="EmailAddr">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="70" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Itinerary">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice>
+											<xs:annotation>
+												<xs:documentation>An Itinerary can contain either an OutboundItinerary or an InboundItinerary. </xs:documentation>
+											</xs:annotation>
+											<xs:element name="InboundItinerary">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="InboundDepartureLocation" type="ForeignLocationType">
+															<xs:annotation>
+																<xs:documentation>Description of the foreign location.  Use a known ICAO airport code closest to the location of departure.  The closest City to departure should be specified.  The country of departure should be specified.</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="LocalDepartureDate">
+															<xs:annotation>
+																<xs:documentation>Estimated date of departure (Local Time).</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:date">
+																	<xs:whiteSpace value="collapse" />
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="LocalDepartureTime">
+															<xs:annotation>
+																<xs:documentation>Estimated time of departure (Local Time).</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="LocalTimeHourMinuteType">
+																	<xs:whiteSpace value="collapse" />
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="BorderCrossing">
+															<xs:annotation>
+																<xs:documentation>Estimated date, time, location of US Border crossing.</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="BorderCrossingType">
+																	<xs:whiteSpace value="preserve" />
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="InboundCompleteItinerary" type="CompleteItineraryType">
+															<xs:annotation>
+																<xs:documentation>Contains foreign airports landed at within 24 hours of departure</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="InboundArrivalLocation" type="DomesticLocationType" />
+														<xs:element name="LocalArrivalDate" type="xs:date">
+															<xs:annotation>
+																<xs:documentation>Estimated date of arrival (Local Time).</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="LocalArrivalTime" type="LocalTimeHourMinuteType">
+															<xs:annotation>
+																<xs:documentation>Estimated time of arrival (Local Time).</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="OutboundItinerary">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="OutboundDepartureLocation" type="DomesticLocationType">
+															<xs:annotation>
+																<xs:documentation>describes the US outbound departure location</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="LocalDepartureDate">
+															<xs:annotation>
+																<xs:documentation xml:lang="en">Estimated date of departure (Local Time).  </xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:date" />
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="LocalDepartureTime" type="LocalTimeHourMinuteType">
+															<xs:annotation>
+																<xs:documentation xml:lang="en">Estimated time of departure (Local Time). </xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="BorderCrossing">
+															<xs:annotation>
+																<xs:documentation>Estimated date, time, location of US Border crossing.</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="BorderCrossingType">
+																	<xs:whiteSpace value="preserve" />
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="OutboundCompleteItinerary" type="CompleteItineraryType">
+															<xs:annotation>
+																<xs:documentation>Contains list of intended foreign airport destinations for 24 hours following departure.</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="OutboundArrivalLocation" type="ForeignLocationType" />
+														<xs:element name="LocalArrivalDate">
+															<xs:annotation>
+																<xs:documentation xml:lang="en">Estimated date of arrival (Local Time). </xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:date" />
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="LocalArrivalTime" type="LocalTimeHourMinuteType">
+															<xs:annotation>
+																<xs:documentation xml:lang="en">Estimated time of arrival (Local Time).</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Aircraft">
+								<xs:annotation>
+									<xs:documentation>Aircraft information must be supplied for General Aviation Flights </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="AircraftDetail">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TailNumber">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="8" />
+																<xs:minLength value="1" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TypeAircraft">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="30" />
+																<xs:minLength value="1" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Color">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="30" />
+																<xs:minLength value="1" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CallSign">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="20" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CBPDecalNumber">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="8" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="OperatorDetail">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice>
+														<xs:element name="PersonOperator" type="PersonNameType" />
+														<xs:element name="CompanyOperator" type="BusinessEntityNameType" />
+													</xs:choice>
+													<xs:element name="OperatorContact" type="ContactType" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="OwnerDetail">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice>
+														<xs:element name="PersonOwnerOrLessee" type="PersonNameType" />
+														<xs:element name="CompanyOwnerOrLessee" type="BusinessEntityNameType" />
+													</xs:choice>
+													<xs:element name="OwnerOrLesseeContact" type="ContactType" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FlightManifest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Crew" minOccurs="0" maxOccurs="100">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CrewDocument1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DocCode">
+														<xs:annotation>
+															<xs:documentation>Valid APIS Codes for Crew Document 1</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1" />
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="DocumentNbr">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Number</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="2" />
+																<xs:maxLength value="20" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ExpiryDate" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Expiration Date</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:date" />
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CntryCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Country of Issuance</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CrewDocument2" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DocCode">
+														<xs:annotation>
+															<xs:documentation>Valid APIS Codes for Crew Document 2</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1" />
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="DocumentNbr">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Number</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="2" />
+																<xs:maxLength value="20" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ExpiryDate" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Expiration Date</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:date" />
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CntryCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Country of Issuance</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Surname">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Last Name of crew member.   Field is character only (a-z) plus apostrophe, dash, and space.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+													<xs:maxLength value="25" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FirstName">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">First Name of crew member.  Field is character only (a-z) plus apostrophe, dash, and space.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SecondName">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Middle Name of crew member.  Field is character only (a-z) plus apostrophe, dash, and space.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Birthdate">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Date of birth. </xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:date" />
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Sex">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Gender code of M or F</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="1" />
+													<xs:enumeration value="M" />
+													<xs:enumeration value="F" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ResidenceCntry">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Country of Residence - ISO 3166-1 alpha-3</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="3" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CitizenshipCntry">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Country of Citizenship - ISO 3166-1 alpha-3</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="3" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="BirthCntry" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Country of Birth - ISO 3166-1 alpha-3.  This is no longer required in version 2.2</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="3" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CityofBirth" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Crew member city of birth.  This is a textual name.  This is no longer required in version 2.2</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="StateProvinceofBirth" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Crew member state/province of birth.  This is a textual name.  This is no longer required in version 2.2</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PermanentAddress" type="AddressType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Required if the TravelerType is PILOT</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="AddressWhileInUS" type="USAddressType" />
+										<xs:element name="TravelerType">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Indicates if the crew member is the Pilot or a Crew member.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="PILOT" />
+													<xs:enumeration value="CREW" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Pax" minOccurs="0" maxOccurs="500">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PaxDocument1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DocCode">
+														<xs:annotation>
+															<xs:documentation>Valid APIS Codes for Passenger Document 1</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1" />
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="DocumentNbr">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Number</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="2" />
+																<xs:maxLength value="20" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ExpiryDate" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Expiration Date</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:date" />
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CntryCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Country of Issuance</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="PaxDocument2" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DocCode">
+														<xs:annotation>
+															<xs:documentation>Valid APIS Codes for Passenger Document 2</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1" />
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="DocumentNbr">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Number</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="2" />
+																<xs:maxLength value="20" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ExpiryDate" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Document Expiration Date</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:date" />
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CntryCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation xml:lang="en">Country of Issuance</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Surname">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Last Name of passenger.   Field is character only (a-z) plus apostrophe, dash, and space.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+													<xs:maxLength value="25" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FirstName">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">First Name of passenger.  Field is character only (a-z) plus apostrophe, dash, and space.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SecondName">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Middle Name of passenger.  Field is character only (a-z) plus apostrophe, dash, and space.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Birthdate">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Date of birth.  </xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:date" />
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Sex">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Gender code of M or F</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="1" />
+													<xs:enumeration value="M" />
+													<xs:enumeration value="F" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ResidenceCntry">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Country of Residence -ISO 3166-1 alpha-3</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="3" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CitizenshipCntry">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Country of Citizenship - ISO 3166-1 alpha-3</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="3" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="AddressWhileInUS" type="USAddressType" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

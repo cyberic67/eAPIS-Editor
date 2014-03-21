@@ -1,0 +1,25 @@
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\WindowsApplication1.exe
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\WindowsApplication1.pdb
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\WindowsApplication1.xml
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.frmAPIS.resources
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.exe
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.xml
+C:\Users\beaulieue.JOLETC\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.pdb
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\bin\Debug\APIS_XML_Generator.exe
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\bin\Debug\APIS_XML_Generator.pdb
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\bin\Debug\APIS_XML_Generator.xml
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\WindowsApplication1.frmAPIS.resources
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\APIS_XML_Generator.exe
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\APIS_XML_Generator.xml
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\APIS_XML_Generator.pdb
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\WindowsApplication1.LoginForm1.resources
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\bin\Debug\APIS_XML_Generator.exe.config
+C:\Users\beaulieue.JOLETC\documents\visual studio 2010\Projects\APIS_XML_Generator\APIS_XML_Generator\obj\x86\Debug\WindowsApplication1.Dialog1.resources
