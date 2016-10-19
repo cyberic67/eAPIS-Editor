@@ -14,6 +14,7 @@ Public Class Dialog1
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         'Bonjour ceci est un commentaire
+        'Ceci est un deuxième commentaire
 
     End Sub
 End Class
